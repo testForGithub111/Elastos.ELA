@@ -106,33 +106,33 @@ out:
 			case *addConsensusEventTask:
 				s.handleAddConsensusEvent(task.event)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle add consensus event task exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle add consensus event task exetime: %s", tcall)
 			case *updateConsensusEventTask:
 				s.handleUpdateConsensusEvent(task.event)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle update consensus event task exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle update consensus event task exetime: %s", tcall)
 			case *addProposalEventTask:
 				s.handleAddProposalEvent(task.event)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle add proposal event task exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle add proposal event task exetime: %s", tcall)
 			case *updateProposalEventTask:
 				s.handleUpdateProposalEvent(task.event)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle update proposal event task exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle update proposal event task exetime: %s", tcall)
 			case *addVoteEventTask:
 				s.handleVoteProposalEvent(task.event)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle add vote event task exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle add vote event task exetime: %s", tcall)
 			case *addViewEventTask:
 				s.handleViewProposalEvent(task.event)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle add view event task exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle add view event task exetime: %s", tcall)
 			}
 
 		case <-s.quit:

@@ -82,13 +82,13 @@ func (c *ChainStore) taskHandler() {
 			case *persistBlockTask:
 				c.handlePersistBlockTask(task.block, task.confirm)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle block exetime: %g num transactions:%d", tcall, len(task.block.Transactions))
+				tcall := time.Since(now)
+				log.Debugf("handle block exetime: %s num transactions:%d", tcall, len(task.block.Transactions))
 			case *rollbackBlockTask:
 				c.handleRollbackBlockTask(task.blockHash)
 				task.reply <- true
-				tcall := float64(time.Now().Sub(now)) / float64(time.Second)
-				log.Debugf("handle block rollback exetime: %g", tcall)
+				tcall := time.Since(now)
+				log.Debugf("handle block rollback exetime: %s", tcall)
 			}
 
 		case closed := <-c.quit:
